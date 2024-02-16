@@ -3,7 +3,7 @@ from pymongo.server_api import ServerApi
 from pymongo.errors import DuplicateKeyError, OperationFailure
 from bson.objectid import ObjectId
 from bson.errors import InvalidId
-
+from constants import *
 
 class DataBase:
     def __init__(self):
@@ -17,13 +17,14 @@ class DataBase:
         for pizza in self.pizzas.find({}, {"_id": False}):
             # Check for identical pizza name
             if pizza["name"] == name:
-                return "That pizza name already exists!"
+                return NAME_ALREADY_EXISTS
             # Check for identical pizza toppings
             if len(pizza["toppings"]) == len(toppings) and len(set(pizza["toppings"]) & set(toppings))== len(toppings):
-                return "Your pizza has identical toppings to the " + pizza["name"] + " pizza, enter different toppings!"
+                return TOPPINGS_ALREADY_EXIST
         # Insert if no identical pizzas
         else:
             self.pizzas.insert_one({'name' : name, 'toppings' : toppings})
+            return SUCCESS
     
     def findPizzas(self):
         # Retrieve list of pizzas
@@ -34,45 +35,46 @@ class DataBase:
         res = self.pizzas.delete_one({'name' : name})
         # Check if pizza not found
         if res.deleted_count == 0:
-            return "Pizza not found"
-        return "Pizza found"
+            return ITEM_NOT_FOUND
+        return SUCCESS
 
     def updatePizzaName(self, oldName, newName):
         # Try to find old pizza
         oldQuery = self.pizzas.find_one({'name' : oldName})
         if not oldQuery:
-            return "Pizza not found"
+            return ITEM_NOT_FOUND
         # Search if new name already exists
         for pizza in self.pizzas.find({}, {"_id": False}):
             if pizza["name"] == newName:
-                return "The new pizza name already exists!"
+                return NAME_ALREADY_EXISTS
         # update pizza
         self.pizzas.update_one(oldQuery, { "$set" : {'name' : newName} })
-        return "Success"       
+        return SUCCESS     
 
     def updatePizzaToppings(self, name, newToppings):
         # Try to find old pizza
         oldQuery = self.pizzas.find_one({'name' : name})
         if not oldQuery:
-            return "Pizza not found"
+            return ITEM_NOT_FOUND
         # Search if new toppings already exist
         for pizza in self.pizzas.find({}, {"_id": False}):
             if len(pizza["toppings"]) == len(newToppings) and len(set(pizza["toppings"]) & set(newToppings))== len(newToppings):
-                return "Your pizza's new toppings are identical to the " + pizza["name"] + " pizza's toppings, enter different toppings!"
+                return TOPPINGS_ALREADY_EXIST
         # update pizza
         self.pizzas.update_one(oldQuery, { "$set" : {'toppings' : newToppings} })
-        return "Success"
+        return SUCCESS
 
 
     ### TOPPINGS ###
     def insertTopping(self, name):
         # Check for identical toppings
         for topping in self.toppings.find({}, {"_id": False}):
-            if self.toppings["name"] == name:
-                return "That topping already exists!"
+            if topping["name"] == name:
+                return NAME_ALREADY_EXISTS
         # Insert if no identical toppigns
         else:
             self.toppings.insert_one({'name' : name})
+            return SUCCESS
     
     def findToppings(self):
         # Retrieve list of toppings
@@ -83,18 +85,18 @@ class DataBase:
         res = self.toppings.delete_one({'name' : name})
         # Check if pizza not found
         if res.deleted_count == 0:
-            return "Topping not found"
-        return "Topping found"
+            return ITEM_NOT_FOUND
+        return SUCCESS
     
     def updateToppingName(self, oldName, newName):
         # Try to find old topping
         oldQuery = self.toppings.find_one({'name' : oldName})
         if not oldQuery:
-            return "Topping not found"
+            return ITEM_NOT_FOUND
         # Search if new name already exists
         for topping in self.toppings.find({}, {"_id": False}):
             if topping["name"] == newName:
-                return "The new topping name already exists!"
+                return NAME_ALREADY_EXISTS
         # update topping
         self.toppings.update_one(oldQuery, { "$set" : {'name' : newName} })
-        return "Success"
+        return SUCCESS
