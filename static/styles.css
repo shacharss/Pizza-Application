@@ -129,8 +129,37 @@ body {
     background-color: #d1c2b3;
 }
 
+.background-color-green {
+    background-color: #97ea11;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
 .response-message {
     text-align: center;
 }
+
+.topping-checkboxes-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line if they exceed container width */
+    justify-content: center;
+    align-items: center; /* Center items vertically */
+    margin-bottom: 5px;
+}
+
+.topping-checkboxes-container input[type="checkbox"],
+.topping-checkboxes-container label {
+    flex: 1; /* Each item takes up equal space */
+    margin-right: 10px; /* Add some space between each checkbox and label */
+}
+
+.toppings-label {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+
 
 

@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Function to handle form submission
-    async function handleSubmitForm(e, route, successMessageElementId, errorMessageElementId, updateListDataCallback) {
+    async function handleSubmitForm(e, route, responseMessageElementId, updateListDataCallback) {
         e.preventDefault();
         const formData = new FormData(e.target);
 
@@ -11,14 +11,15 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             updateListDataCallback();
+            loadToppingCheckboxes();
             if (response.ok) {
                 // Display success message
                 const successMessage = await response.text();
-                document.getElementById(successMessageElementId).textContent = successMessage;
+                document.getElementById(responseMessageElementId).textContent = successMessage;
             } else {
                 // Display error message
                 const errorMessage = await response.text();
-                document.getElementById(errorMessageElementId).textContent = errorMessage;
+                document.getElementById(responseMessageElementId).textContent = errorMessage;
             }
         } catch (error) {
             console.error('Error submitting form:', error);
@@ -28,13 +29,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add toppings form handling
     document.getElementById('add-topping-form').addEventListener('submit', function(e) {
-        handleSubmitForm(e, '/submit', 'add-topping-response-message', 'add-topping-response-message', updateToppingListData);
+        handleSubmitForm(e, '/add-topping', 'add-topping-response-message', updateToppingListData);
+    });
+
+    // Remove toppings form handling
+    document.getElementById('remove-topping-form').addEventListener('submit', function(e) {
+        handleSubmitForm(e, '/remove-topping', 'remove-topping-response-message', updateToppingListData);
+    });
+
+    // Update toppings form handling
+    document.getElementById('update-topping-form').addEventListener('submit', function(e) {
+        handleSubmitForm(e, '/update-topping', 'update-topping-response-message', updateToppingListData);
     });
 
     // Add pizza form handling
     document.getElementById('add-pizza-form').addEventListener('submit', function(e) {
-        handleSubmitForm(e, '/submitp', 'add-pizza-response-message', 'add-pizza-response-message', updatePizzaListData);
+        handleSubmitForm(e, '/add-pizza', 'add-pizza-response-message', updatePizzaListData);
     });
 
-    // Add more form handling here as needed...
+    // Remove pizza form handling
+    document.getElementById('remove-pizza-form').addEventListener('submit', function(e) {
+        handleSubmitForm(e, '/remove-pizza', 'remove-pizza-response-message', updatePizzaListData)
+    });
+
+    // Update pizza name form handling
+    document.getElementById('update-pizza-name-form').addEventListener('submit', function(e) {
+        handleSubmitForm(e, '/update-pizza-name', 'update-pizza-name-response-message', updatePizzaListData);
+    });
+
+    // Update pizza toppings form handling
+    document.getElementById('update-pizza-toppings-form').addEventListener('submit', function(e) {
+        handleSubmitForm(e, '/update-pizza-toppings', 'update-pizza-toppings-response-message', updatePizzaListData);
+    });
 });

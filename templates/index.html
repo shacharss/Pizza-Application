@@ -22,8 +22,8 @@
                     <li id="add-topping-option">Add Topping</li>
                     <div class="submenu" id="add-topping-submenu">
                         <form id="add-topping-form">
-                            <label for="topping-name">Topping Name:</label>
-                            <input type="text" name="topping-name" required>
+                            <label for="add-topping-name">Topping Name:</label>
+                            <input type="text" id="add-topping-name" name="topping-name" required>
                             <button type="submit">Submit</button>
                         </form>
                         <p class="response-message" id="add-topping-response-message"></p>
@@ -31,13 +31,27 @@
                     <li>Remove Topping</li>
                     <div class="submenu" id="remove-topping-submenu">
                         <form id="remove-topping-form">
-                            <label for="topping-name">Topping Name:</label>
-                            <input type="text" name="topping-name" required>
+                            <label for="remove-topping-name">Topping Name:</label>
+                            <input type="text" id="remove-topping-name" name="topping-name" required>
                             <button type="submit">Submit</button>
                         </form>
                         <p class="response-message" id="remove-topping-response-message"></p>
                     </div>
                     <li>Update Topping</li>
+                    <div class="submenu" id="update-topping-submenu">
+                        <form id="update-topping-form">
+                            <div>
+                                <label for="update-topping-old-name">Old Topping Name:</label>
+                                <input type="text" id="update-topping-old-name" name="old-topping-name" required>
+                            </div>
+                            <div>
+                                <label for="update-topping-new-name">New Topping Name:</label>
+                                <input type="text" id="update-topping-new-name" name="new-topping-name" required>
+                            </div>
+                            <button type="submit">Submit</button>
+                        </form>
+                        <p class="response-message" id="update-topping-response-message"></p>
+                    </div>
                 </ul>
             </div>
 
@@ -46,15 +60,51 @@
                     <li id="add-pizza-option">Add Pizza</li>
                     <div class="submenu" id="add-pizza-submenu">
                         <form id="add-pizza-form">
-                            <label for="pizza-name">Pizza Name:</label>
-                            <input type="text" id="pizza-name" name="pizza-name" required>
+                            <label for="add-pizza-name">Pizza Name:</label>
+                            <input type="text" id="add-pizza-name" name="pizza-name" required>
+                            <p class="toppings-label"><strong>Toppings:</strong></p>
+                            <div class="topping-checkboxes-container"></div>
                             <button type="submit">Submit</button>
                         </form>
                         <p class="response-message" id="add-pizza-response-message"></p>
                     </div>
                     <li>Remove Pizza</li>
+                    <div class="submenu" id="remove-pizza-submenu">
+                        <form id="remove-pizza-form">
+                            <label for="remove-pizza-name">Pizza Name:</label>
+                            <input type="text" id="remove-pizza-name" name="pizza-name" required>
+                            <button type="submit">Submit</button>
+                        </form>
+                        <p class="response-message" id="remove-pizza-response-message"></p>
+                    </div>
                     <li>Update Pizza Name</li>
+                    <div class="submenu" id="update-pizza-name-submenu">
+                        <form id="update-pizza-name-form">
+                            <div>
+                                <label for="update-pizza-old-name">Old Pizza Name:</label>
+                                <input type="text" id="update-pizza-old-name" name="old-pizza-name" required>
+                            </div>
+                            <div>
+                                <label for="update-pizza-new-name">New Pizza Name:</label>
+                                <input type="text" id="update-pizza-new-name" name="new-pizza-name" required>
+                            </div>
+                            <button type="submit">Submit</button>
+                        </form>
+                        <p class="response-message" id="update-pizza-name-response-message"></p>
+                    </div>
                     <li>Update Pizza Toppings</li>
+                    <div class="submenu" id="update-pizza-toppings-submenu">
+                        <form id="update-pizza-toppings-form">
+                            <div>
+                                <label for="update-pizza-name">Pizza Name:</label>
+                                <input type="text" id="update-pizza-name" name="pizza-name" required>
+                            </div>
+                            <p class="toppings-label"><strong>New Toppings:</strong></p>
+                            <div class="topping-checkboxes-container"></div>
+                            <button type="submit">Submit</button>
+                        </form>
+                        <p class="response-message" id="update-pizza-toppings-response-message"></p>
+                    </div>
                 </ul>
             </div>
         </div>

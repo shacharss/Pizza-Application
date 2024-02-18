@@ -9,21 +9,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
     toppingsOption.addEventListener('click', function() {
         updateToppingListData();
+        loadToppingCheckboxes();
         toppingsMenu.classList.toggle('active');
         pizzaMenu.classList.remove('active');
         toppingList.classList.toggle('active');
         pizzaList.classList.remove('active');
+        toppingsOption.classList.toggle('background-color-green');
+        pizzaOption.classList.remove('background-color-green');
     });
 
     pizzaOption.addEventListener('click', function() {
         updatePizzaListData();
+        loadToppingCheckboxes();
         pizzaList.classList.toggle('active');
         toppingList.classList.remove('active');
         pizzaMenu.classList.toggle('active');
         toppingsMenu.classList.remove('active');
+        pizzaOption.classList.toggle('background-color-green');
+        toppingsOption.classList.remove('background-color-green');
     });
 });
 
+//Handle submenu clicking
 document.addEventListener('DOMContentLoaded', function() {
     const optionMenus = document.querySelectorAll('.options-menu');
 
@@ -39,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
             submenu.classList.toggle('active');
             clickedItem.classList.toggle('no-bottom-border');
             clickedItem.classList.toggle('background-color-grey');
+            clickedItem.classList.toggle('bold-text');
         });
     });
 });
@@ -109,3 +117,42 @@ async function updateToppingListData() {
         console.error('Error updating topping list data:', error);
     }
 }
+
+
+//Load checkboxes
+document.addEventListener('DOMContentLoaded', function() {
+    loadToppingCheckboxes();
+});
+
+// Function to load topping checkboxes
+async function loadToppingCheckboxes() {
+    try {
+        const response = await fetch('/get-updated-topping-list');
+        const toppings = await response.json();
+
+        const toppingCheckboxesContainers = document.querySelectorAll('.topping-checkboxes-container');
+
+        toppingCheckboxesContainers.forEach(container => {
+            container.innerHTML = '';
+
+            toppings.forEach(topping => {
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.name = 'toppings';
+                checkbox.value = topping.name;
+
+                const label = document.createElement('label');
+                label.textContent = topping.name;
+
+                const checkboxContainer = document.createElement('div');
+                checkboxContainer.appendChild(checkbox);
+                checkboxContainer.appendChild(label);
+
+                container.appendChild(checkboxContainer);
+            });
+        });
+    } catch (error) {
+        console.error('Error fetching toppings:', error);
+    }
+};
+
