@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Shop!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> 
+</head>
+<body>
+    <div class="header">
+        <h1>Pizza Shop App</h1>
+    </div>
+    <div class="header2">
+        <div class="option" id="toppings-option">Toppings</div>
+        <div class="option" id="pizza-option">Pizza</div>
+    </div>
+
+    <div class="content-container">
+        <div class="options-container">
+            <div class="options-menu" id="toppings-menu">
+                <ul>
+                    <li id="add-topping-option">Add Topping</li>
+                    <div class="submenu" id="add-topping-submenu">
+                        <form id="add-topping-form">
+                            <label for="topping-name">Topping Name:</label>
+                            <input type="text" name="topping-name" required>
+                            <button type="submit">Submit</button>
+                        </form>
+                        <p class="response-message" id="add-topping-response-message"></p>
+                    </div>
+                    <li>Remove Topping</li>
+                    <div class="submenu" id="remove-topping-submenu">
+                        <form id="remove-topping-form">
+                            <label for="topping-name">Topping Name:</label>
+                            <input type="text" name="topping-name" required>
+                            <button type="submit">Submit</button>
+                        </form>
+                        <p class="response-message" id="remove-topping-response-message"></p>
+                    </div>
+                    <li>Update Topping</li>
+                </ul>
+            </div>
+
+            <div class="options-menu" id="pizza-menu">
+                <ul>
+                    <li id="add-pizza-option">Add Pizza</li>
+                    <div class="submenu" id="add-pizza-submenu">
+                        <form id="add-pizza-form">
+                            <label for="pizza-name">Pizza Name:</label>
+                            <input type="text" id="pizza-name" name="pizza-name" required>
+                            <button type="submit">Submit</button>
+                        </form>
+                        <p class="response-message" id="add-pizza-response-message"></p>
+                    </div>
+                    <li>Remove Pizza</li>
+                    <li>Update Pizza Name</li>
+                    <li>Update Pizza Toppings</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="list-from-database" id="pizza-list">
+            <h2>Available Pizzas</h2>
+            <ul>
+                {% for item in pizza_list_from_database %}
+                    <li>
+                        <strong>Name:</strong> {{ item.name }} <strong>Toppings:</strong> {{ item.toppings | join(', ') }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    <div class="list-from-database" id="topping-list">
+        <h2>Available Toppings</h2>
+            <ul>
+                {% for item in topping_list_from_database %}
+                    <li>
+                        <strong>Name:</strong> {{ item.name }} 
+                    </li>
+                {% endfor %}
+            </ul>
+    </div>
+
+    </div>
+
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script> 
+    <script src="{{ url_for('static', filename='form-scripts.js') }}"></script> 
+</body>
+</html>

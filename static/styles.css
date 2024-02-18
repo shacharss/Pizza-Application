@@ -1,0 +1,136 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    background-color: #ff3c00;
+    color: #fff;
+    padding: 10px;
+    padding-bottom: 1px;
+    text-align: center;
+}
+
+.header2 {
+    background-color: #ff6b3d;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.options-menu {
+    margin-top: 2px;
+    border: 4px dashed#97ea11;
+    display: none;
+    float: left;
+    width: calc(50% - 5px);
+}
+
+.option {
+    padding: 10px 20px;
+    background-color: #ffff;
+    color: #ff3c00;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.option:hover {
+    background-color: #97ea11;
+}
+
+.options-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.options-menu li {
+    padding: 5px 0;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.options-menu li:last-child {
+    border-bottom: none;
+}
+
+.options-menu li:hover {
+    background-color: #d1c2b3;
+}
+
+.options-container {
+    border: 3px solid #fff;
+    padding: 0px;
+}
+
+.list-from-database {
+    border: 4px dashed#97ea11;
+    padding-bottom: 10px;
+    text-align: center;
+    float: right; 
+    width: calc(50% - 5px);
+    box-sizing: border-box;
+    display: none;
+}
+
+.list-from-database ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list-from-database ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list-from-database li {
+    margin-bottom: 10px; 
+    padding: 10px;
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.list-from-database li h3 {
+    margin-top: 0; 
+}
+
+.list-from-database li p {
+    margin-bottom: 0; 
+}
+
+.submenu {
+    border-bottom: 1px solid #ccc;
+    display: none;
+}
+
+.submenu form {
+    text-align: center;
+    margin: 10px;
+}
+
+.active {
+    display: block;
+}
+
+.no-bottom-border {
+    border-bottom: none !important;
+}
+
+.background-color-grey {
+    background-color: #d1c2b3;
+}
+
+.response-message {
+    text-align: center;
+}
+
+
