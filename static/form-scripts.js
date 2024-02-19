@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Function to handle form submission
     async function handleSubmitForm(e, route, responseMessageElementId, updateListDataCallback) {
         e.preventDefault();
         const formData = new FormData(e.target);
