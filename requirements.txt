@@ -5,3 +5,4 @@ Werkzeug==2.3.7; python_version < '3.7'
 gunicorn==20.1.0
 pymongo[srv]
 Flask-PyMongo
+pytest

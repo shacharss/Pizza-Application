@@ -1,12 +1,8 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, Blueprint
 from database import DataBase
 from constants import *
 
-
-
-app = Flask(__name__)
 app = Flask(__name__, static_url_path='/static')
-
 col = DataBase()
 
 @app.route("/")
@@ -14,6 +10,13 @@ def index():
     pizzas = col.findPizzas()
     toppings = col.findToppings()
     return render_template('index.html', pizza_list_from_database=pizzas, topping_list_from_database=toppings)
+
+@app.route("/clear-db", methods=['POST'])
+def clearDB():
+    if col.clearDB() == SUCCESS:
+        return 'Database cleared successfully!', 200
+    else:
+        return 'An error has occured while clearing the database', 400
 
 @app.route("/add-topping", methods=['POST'])
 def addTopping():
@@ -108,6 +111,9 @@ def get_updated_pizza_list():
 def get_updated_topping_list():
     return jsonify(col.findToppings())
 
+def createApp():
+    newApp = Flask(__name__, static_url_path='/static')
+    return newApp
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080, debug=True)

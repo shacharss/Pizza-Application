@@ -11,6 +11,11 @@ class DataBase:
         self.pizzas = self.client["db"]["pizzas"]
         self.toppings = self.client["db"]["toppings"]
 
+    def clearDB(self):
+        self.pizzas.delete_many({})
+        self.toppings.delete_many({})
+        return SUCCESS
+
     ### PIZZAS ###
     def insertPizza(self, name, toppings):
         # Check for identical pizzas!
